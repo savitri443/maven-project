@@ -26,14 +26,7 @@
     </dependencies>
 
     <build>
-        <plugins>
-            <!-- jgitver-maven-plugin for Git-based versioning -->
-            <plugin>
-                <groupId>fr.brouillard.oss</groupId>
-                <artifactId>jgitver-maven-plugin</artifactId>
-                <version>1.8.0</version>
-                <extensions>true</extensions>
-            </plugin>        
+        <plugins>    
             <!-- Maven Surefire plugin to run JUnit 5 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -22,6 +22,17 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+       
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+
+      - name: Run GitVersion
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0
+
+      - name: Set Maven version
+        run: mvn versions:set -DnewVersion=${{ steps.gitversion.outputs.semVer }}
+
 
       - name: Build with Maven
         run: mvn clean install

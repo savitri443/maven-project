@@ -34,8 +34,14 @@ jobs:
         id: gitversion
         uses: gittools/actions/gitversion/execute@v1
 
+      - name: Show calculated version
+        run: |
+            echo "Build version: ${{ steps.gitversion.outputs.semVer }}"
+
       - name: Set Maven version
-        run: mvn versions:set -DnewVersion=${{ steps.gitversion.outputs.semVer }}
+        run: |
+            mvn versions:set -DnewVersion=${{ steps.gitversion.outputs.semVer }} >> mvn_version.txt
+            echo "### Maven Project Version: $(cat mvn_version.txt)" >> $GITHUB_STEP_SUMMARY
 
 
       - name: Build with Maven

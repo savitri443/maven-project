@@ -1,14 +1,14 @@
-name: Maven CI
+
 
 on:
   push:
-  pull_request:
     branches:
       - main
+  pull_request:
 
 jobs:
   build:
 
-    uses: savitri443/maven-reusable-workflow/.github/workflows/maven-reusuable-workflow.yml@main
+    uses: savitri443/maven-reusable-workflow/.github/workflows/maven-reusable-workflow.yml@main
     with:
       java-version: '17' # or '21', '11', etc. as needed

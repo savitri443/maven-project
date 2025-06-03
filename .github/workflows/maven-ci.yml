@@ -39,10 +39,12 @@ jobs:
             echo "Build version: ${{ steps.gitversion.outputs.semVer }}"
 
       - name: Set Maven version
-        run: |
-            mvn versions:set -DnewVersion=${{ steps.gitversion.outputs.semVer }} >> mvn_version.txt
-            echo "### Maven Project Version: $(cat mvn_version.txt)" >> $GITHUB_STEP_SUMMARY
+        run: mvn versions:set -DnewVersion=${{ steps.gitversion.outputs.semVer }}
 
+      - name: Add Maven version to workflow summary
+        run: |
+          mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec > mvn_version.txt
+          echo "### Maven Project Version: $(cat mvn_version.txt)" >> $GITHUB_STEP_SUMMARY
 
       - name: Build with Maven
         run: mvn clean install

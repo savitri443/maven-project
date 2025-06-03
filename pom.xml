@@ -26,7 +26,7 @@
     </dependencies>
 
     <build>
-        <plugins>
+        <plugins>    
             <!-- Maven Surefire plugin to run JUnit 5 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
